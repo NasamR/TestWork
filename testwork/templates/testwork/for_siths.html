@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="{% url 'sith_registration' %}" method="post">
+        <div align="center">
+            {% csrf_token %}
+            Choose yourself:{{ form.sith }}<br>
+            Choose recruit:{{ form.recruit }}<br>
+            Recruit answers:<br>
+            {% for answer in answers %}
+                {{ answer.question}}{{ answer.answer }}{{ answer.username }}<br>
+            {% endfor %}
+        <button type="submit">Sign Up</button>
+        </div>
+    </form>
+</body>
+</html>

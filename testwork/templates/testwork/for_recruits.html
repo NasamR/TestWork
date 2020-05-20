@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="{% url 'recruit_registration' %}" method="post">
+        <div align="center">
+            {% csrf_token %}
+            Name:{{ form.name }}<br>
+            Planet:{{ form.planet }}<br>
+            Age:{{ form.age }}<br>
+            Email:{{ form.email }}<br>
+        <button type="submit">Sign Up</button>
+        </div>
+    </form>
+</body>
+</html>
