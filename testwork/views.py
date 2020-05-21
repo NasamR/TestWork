@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core.mail import send_mail
 from .forms import *
 from .models import *
 
@@ -38,7 +39,7 @@ def recruit_registration(request):
                 return HttpResponse('This recruit is already exist')
     form = Test_for_recruit()
     questions = Question.objects.filter()
-    return render(request, 'testwork/test_for_recruit.html', {'form': form, 'questions': questions})
+    return render(request, 'testwork/test_for_recruit.html', {'form': form, 'questions': questions, 'name': name})
 
 
 def test_result(request):
@@ -51,4 +52,15 @@ def test_result(request):
 
 
 def sith_registration(request):
+    if request.method == 'POST':
+        form = Sith_registration(request.POST)
+        if form.is_valid():
+            recruit = form.cleaned_data['recruit']
+            sith = form.cleaned_data['sith']
+            msg = f'{recruit}, вы приняты!'
+            email = Recruit.objects.get(name=recruit)
+            send_mail('Тест на Руку Тени',
+                      msg,
+                      'djangotestwork01@gmail.com',
+                      ['samikaevn@yandex.ru'], fail_silently=True)
     return HttpResponse('Sith registration is done')

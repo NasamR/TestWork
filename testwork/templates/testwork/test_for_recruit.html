@@ -11,7 +11,7 @@
         {% for question in questions %}
             {{ question.question }}<input name="{{ question.id }}" type="text"><br>
         {% endfor %}
-        Username:<input type="text" name="username"><br>
+        <input type="hidden" name="username" value="{{ name }}"><br>
         <button type="submit">Finish</button>
     </div>
     </form>
