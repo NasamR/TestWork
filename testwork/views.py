@@ -62,5 +62,5 @@ def sith_registration(request):
             send_mail('Тест на Руку Тени',
                       msg,
                       'djangotestwork01@gmail.com',
-                      ['samikaevn@yandex.ru'], fail_silently=True)
+                      [str(email.email)], fail_silently=True)
     return HttpResponse('Sith registration is done')
